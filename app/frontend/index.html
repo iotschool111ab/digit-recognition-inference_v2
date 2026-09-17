@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MNIST Multi-Model Inference Demo</title>
+  <link rel="stylesheet" href="/frontend/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>MNIST 多模型推論比較</h1>
+    <p class="subtitle">手寫一個 0-9 的數字，或上傳圖片，比較 NN / CNN / ViT 各版本模型的預測結果</p>
+  </header>
+
+  <main>
+    <section class="input-panel">
+      <h2>1. 輸入</h2>
+      <div class="canvas-wrap">
+        <canvas id="drawCanvas" width="280" height="280"></canvas>
+      </div>
+      <div class="controls">
+        <button id="clearBtn" type="button">清除畫布</button>
+        <label class="upload-btn">
+          上傳圖片
+          <input id="fileInput" type="file" accept="image/*" hidden>
+        </label>
+        <button id="predictBtn" type="button" class="primary">預測</button>
+      </div>
+      <div class="preview-wrap">
+        <span>前處理後（模型實際看到的樣子）</span>
+        <img id="processedPreview" alt="前處理後的 28x28 圖片">
+      </div>
+    </section>
+
+    <section class="result-panel">
+      <h2>2. 各模型預測結果</h2>
+      <div id="modelStatus" class="model-status"></div>
+      <div class="model-select">
+        <div class="model-select-hint">勾選要比較的模型（ViT-base 在 CPU 上較慢，預設不勾）</div>
+        <div id="modelSelect" class="model-select-list"></div>
+      </div>
+      <div id="resultsList" class="results-list">
+        <p class="placeholder">畫完數字後點「預測」查看結果</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="/frontend/app.js"></script>
+</body>
+
+</html>

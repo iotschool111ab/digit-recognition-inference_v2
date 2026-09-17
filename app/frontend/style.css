@@ -1,0 +1,211 @@
+:root {
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --border: #e0e2e7;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --accent: #3b5bfd;
+  --accent-soft: #eef1ff;
+  --ok: #1a9c5b;
+  --warn: #c2410c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+header {
+  padding: 28px 24px 16px;
+  text-align: center;
+}
+
+header h1 { margin: 0 0 6px; font-size: 1.6rem; }
+.subtitle { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+main {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 8px 24px 40px;
+}
+
+@media (max-width: 760px) {
+  main { grid-template-columns: 1fr; }
+}
+
+section {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+}
+
+section h2 { margin: 0 0 14px; font-size: 1.05rem; }
+
+.canvas-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+#drawCanvas {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+button, .upload-btn {
+  flex: 1;
+  min-width: 90px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+button:hover, .upload-btn:hover { border-color: var(--accent); }
+
+button.primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.preview-wrap {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.preview-wrap span { font-size: 0.8rem; color: var(--muted); }
+
+#processedPreview {
+  width: 84px;
+  height: 84px;
+  image-rendering: pixelated;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #000;
+}
+
+.model-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.status-chip {
+  font-size: 0.75rem;
+  padding: 3px 9px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+
+.status-chip.ok { color: var(--ok); border-color: var(--ok); background: #eafaf1; }
+.status-chip.missing { color: var(--warn); border-color: var(--warn); background: #fdf1ea; }
+
+.model-select { margin-bottom: 14px; }
+
+.model-select-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.model-select-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+}
+
+.model-check {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.model-check input { cursor: pointer; }
+
+.placeholder { color: var(--muted); font-size: 0.9rem; }
+
+.results-list { display: flex; flex-direction: column; gap: 12px; }
+
+.result-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.result-card.best { border-color: var(--accent); background: var(--accent-soft); }
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+  gap: 8px;
+}
+
+.result-name { font-weight: 600; font-size: 0.92rem; }
+.result-meta { font-size: 0.78rem; color: var(--muted); }
+
+.result-pred {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.prob-bars {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 3px;
+  align-items: end;
+  height: 46px;
+  margin-top: 8px;
+}
+
+.prob-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  gap: 2px;
+}
+
+.prob-bar {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 2px 2px 0 0;
+  opacity: 0.55;
+}
+
+.prob-bar-col.top .prob-bar { opacity: 1; }
+.prob-bar-label { font-size: 0.65rem; color: var(--muted); }
